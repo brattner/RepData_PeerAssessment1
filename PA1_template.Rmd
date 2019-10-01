@@ -1,20 +1,76 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
+title: "Reproducible Research: Peer Assessment 1 - Barbara Rattner"
 output: 
   html_document:
     keep_md: true
 ---
+---
+title: "Assignment 1 - Reproducible Research Course (week 2)"
+author: "Barbara Rattner"
+date: "10/1/2019"
+output: html_document
+---
 
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 ## Loading and preprocessing the data
 
+The data are loaded from a csv file in the working directory called "activity.csv"
 
+```{r}
+activity.data <- read.csv("activity.csv")
+```
 
-## What is mean total number of steps taken per day?
+## What is the mean total number of steps taken per day?
 
+*(For this part of the assignment, I am ignoring missing values)*
+
+1. Calculate the total number of steps taken per day
+
+To calculate the steps taken per day, we need to first calculate the daily number of steps.
+
+```{r}
+StepsPerDay <- tapply(activity.data$steps, activity.data$date, sum, na.rm = TRUE)
+```
+To present the data in table format I will use the 'kable' function in the 'knitr' package.
+
+```{r}
+library(knitr)
+kable(StepsPerDay, caption = "Steps taken per day", col.names ="Steps")
+```
+
+2. Make a histogram of the total number of steps taken each day
+
+```{r}
+hist(StepsPerDay, col = "gray", xlab = "Steps per Day", breaks = 15, main = paste("Frequency of" , "total number of steps taken in a day")) 
+```
+
+3. Calculate and report the mean and median of the total number of steps taken per day
+
+```{r}
+Mean <- format(mean(StepsPerDay), nsmall = 2)
+Median <- format(median(StepsPerDay), nsmall = 2)
+```
+
+The **mean** number of steps taken per day is **`r Mean`** and the **median** number of steps taken per day is **`r Median`**.
 
 
 ## What is the average daily activity pattern?
+
+1. Make a time series plot (type="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+
+``` {r}
+AverageStepsPerInterval <- aggregate(x = list(AverageSteps = activity.data$steps), by = list(Interval = activity.data$interval), FUN=mean, na.rm = TRUE)
+ plot(AverageStepsPerInterval, type = "l", main = "Average Number of Steps Taken Daily in Interval", xlab = "5-Minute Interval", ylab = "Average Number of Steps per Day")
+```
+
+
+
+
+2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+
 
 
 
