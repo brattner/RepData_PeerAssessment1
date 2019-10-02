@@ -39,7 +39,7 @@ kable(StepsPerDay, caption = "Steps taken per day", col.names ="Steps")
 
 2. Make a histogram of the total number of steps taken each day
 
-```{r histogram}
+```{r}
 hist(StepsPerDay, col = "gray", xlab = "Steps per Day", breaks = 15, main = paste("Frequency of" , "total number of steps taken in a day")) 
 ```
 
@@ -57,7 +57,7 @@ The **mean** number of steps taken per day is **`r Mean`** and the **median** nu
 
 1. Make a time series plot (type="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
-``` {r times series plot}
+``` {r}
 AverageStepsPerInterval <- aggregate(x = list(AverageSteps = activity.data$steps), by = list(Interval = activity.data$interval), FUN=mean, na.rm = TRUE)
  plot(AverageStepsPerInterval, type = "l", main = "Average Number of Steps Taken Daily in Each Interval", xlab = "5-Minute Interval", ylab = "Average Number of Steps")
 ```
@@ -94,7 +94,7 @@ New.activity.data <- cbind.data.frame(filled.in.steps, activity.data$date, activ
 colnames(New.activity.data) <- colnames (activity.data)
 ```
 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
-```{r histogram2}
+```{r}
 New.StepsPerDay <- tapply(New.activity.data$steps, New.activity.data$date, sum, na.rm = TRUE)
 
 hist(New.StepsPerDay, col = "gray", xlab = "Steps per Day", breaks = 15, main = paste("Frequency of" , "total number of steps taken in a day")) 
@@ -123,7 +123,7 @@ New.activity.data$day <- factor((weekdays(New.activity.data$date) %in% weekday),
 
 2. Make a panel plot containing a time series plot (i.e. type="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
-``` {r time series plot2}
+``` {r}
 library(ggplot2)
 Average.New.activity.data <- aggregate(steps ~ interval + day, data = New.activity.data, mean)
 ggplot(Average.New.activity.data, aes(interval, steps)) + 
