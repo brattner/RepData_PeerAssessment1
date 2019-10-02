@@ -4,7 +4,6 @@ author: "Barbara Rattner"
 date: "10/2/2019"
 output: 
   html_document: 
-    fig_caption: yes
     keep_md: yes
 ---
 
@@ -116,7 +115,7 @@ Table: Steps taken per day
 hist(StepsPerDay, col = "gray", xlab = "Steps per Day", breaks = 15, main = paste("Frequency of" , "total number of steps taken in a day")) 
 ```
 
-![](Reproducible-Research_files/figure-html/histogram-1.png)<!-- -->
+![](Reproducible-Research_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 3. Calculate and report the mean and median of the total number of steps taken per day
 
@@ -139,7 +138,7 @@ AverageStepsPerInterval <- aggregate(x = list(AverageSteps = activity.data$steps
  plot(AverageStepsPerInterval, type = "l", main = "Average Number of Steps Taken Daily in Each Interval", xlab = "5-Minute Interval", ylab = "Average Number of Steps")
 ```
 
-![](Reproducible-Research_files/figure-html/times series plot-1.png)<!-- -->
+![](Reproducible-Research_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -182,7 +181,7 @@ New.StepsPerDay <- tapply(New.activity.data$steps, New.activity.data$date, sum, 
 hist(New.StepsPerDay, col = "gray", xlab = "Steps per Day", breaks = 15, main = paste("Frequency of" , "total number of steps taken in a day")) 
 ```
 
-![](Reproducible-Research_files/figure-html/histogram2-1.png)<!-- -->
+![](Reproducible-Research_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 ```r
 Mean <- format(mean(New.StepsPerDay), nsmall = 2)
@@ -221,4 +220,4 @@ ggplot(Average.New.activity.data, aes(interval, steps)) +
     ylab("Average number of steps")
 ```
 
-![](Reproducible-Research_files/figure-html/time series plot2-1.png)<!-- -->
+![](Reproducible-Research_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
